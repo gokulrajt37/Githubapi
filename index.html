@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Github search Repo</title>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">
+           Github search App
+        </h1>
+        <form id="myForm" autocomplete="off">
+            <div class="form-group">
+                <input type="text" class="form-control" id="search" placeholder="search username" onkeypress="getAllUsers()"  required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger btn-block">
+                    search user
+                </button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js">
+    
+    </script>
+</body>
+<script src="script.js">
+    async function getAllUsers(){
+  const data = await fetch("https://api.github.com/users/");
+  const user = await data.json();
+  console.log(data);
+  
+}
+function getAllUser({avatar_url,login,repos_url}){
+  const info = document.createElement("div");
+  info.setAttribute = ("class","container");
+  
+  info.innerHTML = `
+  <div class="avatar-container">
+   <img class="avatar" src="${avatar_url}">
+   </div>
+   <div class="details>
+   <h3>${login}</h3>
+   <p>${repos_url}</p>
+   </div>
+  
+  
+  `;
+  document.body.append(info);
+
+
+}
+getAllUsers();
+
+</script>
+</html>
+
